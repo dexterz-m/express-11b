@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const numbersController = require('../controllers/postsFormController')
+const postsFormController = require('../controllers/postsFormController')
 
-router.route('/').get(postFormController.getPosts);
-router.route('/').post(postFormController.postPosts);
-router.route('/:id').get(postFormController.postsId)
+router.route('/').get(postsFormController.getPosts);
+
+router.route('/').post(postsFormController.postPosts);
+
+router.route('/:id').get(postsFormController.getPostsById);
 
 module.exports = router;

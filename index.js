@@ -6,51 +6,19 @@ const knex = require('./config/knex');
 
 
 app.use(cors(corsOptions));
-app.use(express.json())
+app.use(express.json());
 
-app.use('/numbers', require('./routes/numbers'))
-app.use('/square', require('./routes/square'))
-app.use('/contact', require('./routes/contact'))
-app.use('/posts', require('./routes/posts'))
 
-// app.get('/posts', (req, res) => {
-//     try {
-//          knex('blog_posts').insert({title: req.body.title, body: req.body.body}).then(
-//              res.status(201).send({title: req.body.title, body: req.body.body})
-//      )
-//     } catch (err) {
-//          res.status(500).send({error:err.message})
-//     }
-     
-// })
+app.use('/numbers', require('./routes/numbers'));
 
-// app.get('/posts/:id', (req, res) => {
-//     try {
-//         const postId = req.params.id;
-//         knex('blog_posts')
-//         .where({id: postId})
-//         .first('*')
-//         .then((row) => {
-//             res.send(row);
-//         })
+app.use('/square', require('./routes/square'));
 
-//     } catch (err) {
-//          res.status(500).send({error:err.message})
-//     }
-     
-// })
- 
+app.use('/contact', require('./routes/contact'));
 
-// app.post('/posts', (req, res) => {
-//    try {
-//         knex('blog_posts').insert({title: req.body.title, body: req.body.body}).then(
-//             res.status(201).send({title: req.body.title, body: req.body.body})
-//     )
-//    } catch (err) {
-//         res.status(500).send({error:err.message})
-//    }
-    
-// })
+app.use('/posts', require('./routes/posts'));
+
+app.use('/students',require('./routes/students'));
+
 
 const port = 5000;
 

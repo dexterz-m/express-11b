@@ -1,8 +1,8 @@
 const knex = require('../config/knex');
 
-const getPosts = (req, res) => {
+const getStudents = (req, res) => {
     try{
-    knex.select('*').from('blog_posts')
+    knex.select('*').from('skoleni')
     .then((rows) => {
         res.send(rows);
     }) 
@@ -15,10 +15,10 @@ const getPosts = (req, res) => {
 }
 
 
-const postPosts = (req, res) => {
+const postStudents = (req, res) => {
     try{
-        knex('blog_posts').insert({title: req.body.title, body: req.body.body}).then(
-            res.status(201).send({title: req.body.title, body: req.body.body})
+        knex('skoleni').insert({name: req.body.name, klases_id: req.body.klases_id}).then(
+            res.status(201).send({name: req.body.name, klases_id: req.body.klases_id})
         )
     } catch (err) {
         res.status(500).send({error:err.message})
@@ -26,11 +26,11 @@ const postPosts = (req, res) => {
 }
 
 
-const getPostsById = (req, res) => {
+const getStudentsById = (req, res) => {
     try{
-        const postId = req.params.id
-        knex('blog_posts')
-        .where ({id: postId})
+        const klases_id = req.params.id
+        knex('skoleni')
+        .where ({id: klases_id})
         .first('*')
         .then((row) => {
             res.send(row);
@@ -42,4 +42,4 @@ const getPostsById = (req, res) => {
 
 
 
-module.exports = { getPosts,postPosts,getPostsById };
+module.exports = { getStudents,postStudents,getStudentsById };
